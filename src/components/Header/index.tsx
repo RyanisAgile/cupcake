@@ -16,7 +16,7 @@ const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
-  }; 
+  };
 
   // Sticky Navbar
   const [sticky, setSticky] = useState(false);
@@ -48,7 +48,7 @@ const Header = () => {
       <header
         className={`ud-header left-0 top-0 z-40 flex w-full items-center ${
           sticky
-            ? "shadow-nav fixed z-[9999] border-b border-stroke bg-white/80 backdrop-blur-[5px] transition dark:border-dark-3/20 dark:bg-dark/10"
+            ? "shadow-nav fixed z-[999] border-b border-stroke bg-white/80 backdrop-blur-[5px] dark:border-dark-3/20 dark:bg-dark/10"
             : "absolute bg-transparent"
         }`}
       >
@@ -66,14 +66,14 @@ const Header = () => {
                     <Image
                       src={`/images/logo/logo.svg`}
                       alt="logo"
-                      width={140}
+                      width={240}
                       height={30}
                       className="header-logo w-full dark:hidden"
                     />
                     <Image
                       src={`/images/logo/logo-white.svg`}
                       alt="logo"
-                      width={140}
+                      width={240}
                       height={30}
                       className="header-logo hidden w-full dark:block"
                     />
@@ -149,9 +149,10 @@ const Header = () => {
                   <ul className="block lg:ml-8 lg:flex lg:gap-x-8 xl:ml-14 xl:gap-x-12">
                     {menuData.map((menuItem, index) =>
                       menuItem.path ? (
-                        <li key={menuItem.id} className="group relative">
+                        <li key={index} className="group relative">
                           {pathUrl !== "/" ? (
                             <Link
+                              onClick={navbarToggleHandler}
                               scroll={false}
                               href={menuItem.path}
                               className={`ud-menu-scroll flex py-2 text-base text-dark group-hover:text-primary dark:text-white dark:group-hover:text-primary lg:inline-flex lg:px-0 lg:py-6 ${
@@ -179,10 +180,7 @@ const Header = () => {
                           )}
                         </li>
                       ) : (
-                        <li
-                          className="submenu-item group relative"
-                          key={menuItem.id}
-                        >
+                        <li className="submenu-item group relative" key={index}>
                           {pathUrl !== "/" ? (
                             <button
                               onClick={() => handleSubmenu(index)}
@@ -240,10 +238,10 @@ const Header = () => {
                               openIndex === index ? "!-left-[25px]" : "hidden"
                             }`}
                           >
-                            {menuItem.submenu.map((submenuItem: any) => (
+                            {menuItem?.submenu?.map((submenuItem: any, i) => (
                               <Link
                                 href={submenuItem.path}
-                                key={submenuItem.id}
+                                key={i}
                                 className={`block rounded px-4 py-[10px] text-sm ${
                                   pathUrl === submenuItem.path
                                     ? "text-primary"
@@ -311,21 +309,20 @@ const Header = () => {
                       >
                         Sign Out
                       </button>
-                    )
-                    }
+                    )}
                   </>
                 ) : (
                   <>
                     {pathUrl !== "/" ? (
                       <>
                         <Link
-                          href="/auth/signin"
+                          href="/signin"
                           className="px-7 py-3 text-base font-medium text-dark hover:opacity-70 dark:text-white"
                         >
                           Sign In
                         </Link>
                         <Link
-                          href="/auth/signup"
+                          href="/signup"
                           className="rounded-lg bg-primary px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-primary/90 dark:bg-white/10 dark:hover:bg-white/20"
                         >
                           Sign Up
@@ -334,7 +331,7 @@ const Header = () => {
                     ) : (
                       <>
                         <Link
-                          href="/auth/signin"
+                          href="/signin"
                           className={`px-7 py-3 text-base font-medium hover:opacity-70 ${
                             sticky ? "text-dark dark:text-white" : "text-white"
                           }`}
@@ -342,7 +339,7 @@ const Header = () => {
                           Sign In
                         </Link>
                         <Link
-                          href="/auth/signup"
+                          href="/signup"
                           className={`rounded-lg px-6 py-3 text-base font-medium text-white duration-300 ease-in-out ${
                             sticky
                               ? "bg-primary hover:bg-primary/90 dark:bg-white/10 dark:hover:bg-white/20"

@@ -44,9 +44,9 @@ const Testimonials = () => {
           center
         />
 
-        <div className="mt-[60px] flex flex-wrap lg:mt-20">
-          {testimonialData.map((testimonial) => (
-            <SingleTestimonial key={testimonial.id} testimonial={testimonial} />
+        <div className="mt-[60px] flex flex-wrap lg:mt-20 gap-y-8">
+          {testimonialData.map((testimonial, i) => (
+            <SingleTestimonial key={i} testimonial={testimonial} />
           ))}
         </div>
       </div>
