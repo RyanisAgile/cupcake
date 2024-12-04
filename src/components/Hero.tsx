@@ -12,7 +12,7 @@ export const Hero = () => {
               Customer Feedback Optimization Platform
             </h1>
             <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
-              Cupcake is a compete customer feedback optimization platform for
+              Cupcake is a complete customer feedback optimization platform for
               enterprise businesses. It leverages the power of AI to summarize
               and prioritize your customer feedback.
             </p>
